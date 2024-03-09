@@ -2,5 +2,5 @@
   command = "npm run build"
   functions = "dist/functions"
 
-[context.production]
-  environment = { PORT = 4204 }
+[context.production.environment]
+  PORT = "4204"
