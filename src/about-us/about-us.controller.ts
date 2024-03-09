@@ -1,3 +1,8 @@
+import { Multer } from 'multer';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { AboutUsService } from './about-us.service';
+import { AboutUs } from './about-us.model';
+import { multerConfig } from '../../multer.config';
 import {
   Controller,
   Get,
@@ -8,11 +13,6 @@ import {
   UseInterceptors,
   UploadedFile,
 } from '@nestjs/common';
-import { Multer } from 'multer';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { AboutUsService } from './about-us.service';
-import { AboutUs } from './about-us.model';
-import { multerConfig } from '../../multer.config';
 
 @Controller('about-us')
 export class AboutUsController {
