@@ -10,16 +10,20 @@ import { HomeModule } from './home/home.module';
 import { TrendingModule } from './trending/trending.module';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './products/product.module';
+import { BlogsModule } from './blog/blog.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/anco-db', {
-      family: undefined,
-      hints: undefined,
-      localAddress: undefined,
-      localPort: undefined,
-      lookup: undefined,
-    }),
+    MongooseModule.forRoot(
+      'mongodb+srv://cdhaykkirakosyan:YtMtkRqX798g6p3Q@cluster0.098vydt.mongodb.net/anco-db',
+      {
+        family: undefined,
+        hints: undefined,
+        localAddress: undefined,
+        localPort: undefined,
+        lookup: undefined,
+      },
+    ),
     SliderCategoryModule,
     AboutUsModule,
     InitModule,
@@ -28,6 +32,7 @@ import { ProductModule } from './products/product.module';
     TrendingModule,
     CategoryModule,
     ProductModule,
+    BlogsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

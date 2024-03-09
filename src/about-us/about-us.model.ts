@@ -6,6 +6,9 @@ import { Document } from 'mongoose';
 export class AboutUs extends Document {
   @Prop()
   description: string;
+
+  @Prop()
+  imageUrl: string;
 }
 
 export const aboutUsSchema = SchemaFactory.createForClass(AboutUs);

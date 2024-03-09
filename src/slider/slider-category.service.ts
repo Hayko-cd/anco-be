@@ -21,7 +21,7 @@ export class SliderCategoryService {
     }
   }
 
-  async addData(data: SliderCategory): Promise<SliderCategory> {
+  async addData(data: { imageUrl: any; title: any }): Promise<SliderCategory> {
     try {
       const newData = new this.sliderCategoryModel(data);
       return newData.save();
@@ -61,15 +61,6 @@ export class SliderCategoryService {
   }
 
   private createDefaultSliderCategory(): SliderCategory[] {
-    return [
-      new this.sliderCategoryModel({
-        title: 'Default 1',
-        url: 'https://example.com/1',
-      }),
-      new this.sliderCategoryModel({
-        title: 'Default 2',
-        url: 'https://example.com/2',
-      }),
-    ];
+    return [];
   }
 }

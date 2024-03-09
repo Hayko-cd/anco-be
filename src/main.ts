@@ -1,6 +1,7 @@
-// main.ts
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import * as express from 'express';
+import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,7 +12,9 @@ async function bootstrap() {
     credentials: true,
   });
 
-  await app.listen(3004);
+  app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
+
+  await app.listen(4204);
 }
 
 bootstrap();

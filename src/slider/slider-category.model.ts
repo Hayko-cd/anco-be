@@ -8,7 +8,7 @@ export class SliderCategory extends Document {
   title: string;
 
   @Prop()
-  url: string;
+  imageUrl: string;
 }
 
 export const sliderCategorySchema =

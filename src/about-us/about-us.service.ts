@@ -2,6 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Multer } from 'multer';
 import { AboutUs } from './about-us.model';
 
 @Injectable()
@@ -20,16 +21,28 @@ export class AboutUsService {
     }
   }
 
-  async updateDescription(description: string): Promise<AboutUs> {
+  async updateDescription(
+    description: string,
+    file: Multer.File,
+  ): Promise<AboutUs> {
     try {
       const existingData = await this.aboutUsModel.findOne().exec();
 
       if (existingData) {
         existingData.description = description;
+
+        if (file) {
+          existingData.imageUrl = `/uploads/${file.filename}`;
+        }
+
         return existingData.save();
       }
 
-      const newData = new this.aboutUsModel({ description });
+      const newData = new this.aboutUsModel({
+        description,
+        imageUrl: file ? `/uploads/${file.filename}` : null,
+      });
+
       return newData.save();
     } catch (error) {
       console.error('Error updating description:', error);
@@ -40,6 +53,7 @@ export class AboutUsService {
   private createDefaultAboutUs(): AboutUs {
     return new this.aboutUsModel({
       description: '',
+      imageUrl: null,
     });
   }
 }

@@ -7,11 +7,16 @@ import {
   Delete,
   Body,
   Param,
+  UseInterceptors,
+  UploadedFile,
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { Multer } from 'multer';
+import { multerConfig } from '../../multer.config';
 import { SliderCategoryService } from './slider-category.service';
 import { SliderCategory } from './slider-category.model';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('slider-category')
 export class SliderCategoryController {
@@ -23,16 +28,17 @@ export class SliderCategoryController {
   }
 
   @Post()
-  async addData(@Body() data: SliderCategory): Promise<SliderCategory> {
-    try {
-      return await this.sliderCategoryService.addData(data);
-    } catch (error) {
-      console.error('Error adding data:', error);
-      throw new HttpException(
-        'Internal Server Error',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
+  @UseInterceptors(FileInterceptor('image', multerConfig))
+  async addData(
+    @Body() requestBody: any,
+    @UploadedFile() file: Multer.File,
+  ): Promise<SliderCategory> {
+    const productData = {
+      title: requestBody.title,
+      imageUrl: file ? file.filename : undefined,
+    };
+
+    return this.sliderCategoryService.addData(productData);
   }
 
   @Put(':id')

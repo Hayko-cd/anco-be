@@ -1,6 +1,6 @@
 // src/category/category.controller.ts
 
-import { Controller, Get, Post, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body, Delete } from '@nestjs/common';
 // @ts-ignore
 import { CategoryDto } from './category.dto';
 import { CategoryService } from './category.service';
@@ -23,5 +23,10 @@ export class CategoryController {
   @Get(':id')
   getCategoryById(@Param('id') id: string): Promise<Category> {
     return this.categoryService.findById(id);
+  }
+
+  @Delete(':id')
+  deleteCategory(@Param('id') id: string): Promise<void> {
+    return this.categoryService.delete(id);
   }
 }
