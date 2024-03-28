@@ -22,7 +22,6 @@ export class InitService {
 
   async addData(data: Init): Promise<Init> {
     try {
-      console.log('vaspiurrrr');
       const newData = new this.initModel(data);
       return newData.save();
     } catch (error) {
