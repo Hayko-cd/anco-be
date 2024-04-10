@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { BlogModel, blogModelSchema } from './blog.model';
 import { BlogsController } from './blog.controller';
 import { BlogService } from './blog.service';
+import { FileUploadService } from '../file-upload.service';
 
 @Module({
   imports: [
@@ -12,6 +13,6 @@ import { BlogService } from './blog.service';
     ]),
   ],
   controllers: [BlogsController],
-  providers: [BlogService],
+  providers: [BlogService, FileUploadService],
 })
 export class BlogsModule {}

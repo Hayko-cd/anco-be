@@ -11,6 +11,7 @@ import { TrendingModule } from './trending/trending.module';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './products/product.module';
 import { BlogsModule } from './blog/blog.module';
+import { FileUploadModule } from './file-upload.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { BlogsModule } from './blog/blog.module';
     CategoryModule,
     ProductModule,
     BlogsModule,
+    FileUploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],

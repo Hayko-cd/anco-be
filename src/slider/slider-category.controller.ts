@@ -17,10 +17,14 @@ import { multerConfig } from '../../multer.config';
 import { SliderCategoryService } from './slider-category.service';
 import { SliderCategory } from './slider-category.model';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { FileUploadService } from '../file-upload.service';
 
 @Controller('slider-category')
 export class SliderCategoryController {
-  constructor(private readonly sliderCategoryService: SliderCategoryService) {}
+  constructor(
+    private readonly sliderCategoryService: SliderCategoryService,
+    private readonly fileUploadService: FileUploadService,
+  ) {}
 
   @Get()
   async getAllData(): Promise<SliderCategory[]> {
@@ -33,9 +37,12 @@ export class SliderCategoryController {
     @Body() requestBody: any,
     @UploadedFile() file: Multer.File,
   ): Promise<SliderCategory> {
+    const uploadResult = await this.fileUploadService.uploadFile(file);
+    const imageUrl = uploadResult.Key;
+
     const productData = {
       title: requestBody.title,
-      imageUrl: file ? file.filename : undefined,
+      imageUrl: imageUrl,
     };
 
     return this.sliderCategoryService.addData(productData);

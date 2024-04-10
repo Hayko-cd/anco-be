@@ -10,17 +10,22 @@ import {
   UseInterceptors,
   UploadedFile,
   HttpException,
-  HttpStatus, NotFoundException
-} from "@nestjs/common";
+  HttpStatus,
+  NotFoundException,
+} from '@nestjs/common';
 import { Multer } from 'multer';
 import { multerConfig } from '../../multer.config';
 import { BlogService } from './blog.service';
 import { BlogModel } from './blog.model';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { FileUploadService } from '../file-upload.service';
 
 @Controller('blogs')
 export class BlogsController {
-  constructor(private readonly BlogModels: BlogService) {}
+  constructor(
+    private readonly BlogModels: BlogService,
+    private readonly fileUploadService: FileUploadService,
+  ) {}
 
   @Get()
   async getAllData(): Promise<BlogModel[]> {
@@ -49,10 +54,13 @@ export class BlogsController {
     @Body() requestBody: any,
     @UploadedFile() file: Multer.File,
   ): Promise<BlogModel> {
+    const uploadResult = await this.fileUploadService.uploadFile(file);
+    const imageUrl = uploadResult.Key;
+
     const productData = {
       title: requestBody.title,
       description: requestBody.description,
-      imageUrl: file ? file.filename : undefined,
+      imageUrl: imageUrl,
     };
 
     return this.BlogModels.addData(productData);

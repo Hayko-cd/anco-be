@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SliderCategory, sliderCategorySchema } from './slider-category.model';
 import { SliderCategoryController } from './slider-category.controller';
 import { SliderCategoryService } from './slider-category.service';
+import { FileUploadService } from "../file-upload.service";
 
 @Module({
   imports: [
@@ -12,6 +13,6 @@ import { SliderCategoryService } from './slider-category.service';
     ]),
   ],
   controllers: [SliderCategoryController],
-  providers: [SliderCategoryService],
+  providers: [SliderCategoryService, FileUploadService],
 })
 export class SliderCategoryModule {}
