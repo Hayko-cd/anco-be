@@ -24,17 +24,37 @@ export class ProductController {
 
   @Post()
   @UseInterceptors(FileInterceptor('image', multerConfig))
+  @UseInterceptors(FileInterceptor('image_2', multerConfig))
+  @UseInterceptors(FileInterceptor('image_3', multerConfig))
+  @UseInterceptors(FileInterceptor('image_4', multerConfig))
+  @UseInterceptors(FileInterceptor('image_5', multerConfig))
   async createProduct(
     @Body() requestBody: any,
     @UploadedFile() file: Multer.File,
+    @UploadedFile() file_2: Multer.File,
+    @UploadedFile() file_3: Multer.File,
+    @UploadedFile() file_4: Multer.File,
+    @UploadedFile() file_5: Multer.File,
   ): Promise<Product> {
     const uploadResult = await this.fileUploadService.uploadFile(file);
+    const uploadResult2 = await this.fileUploadService.uploadFile(file_2);
+    const uploadResult3 = await this.fileUploadService.uploadFile(file_3);
+    const uploadResult4 = await this.fileUploadService.uploadFile(file_4);
+    const uploadResult5 = await this.fileUploadService.uploadFile(file_5);
     const imageUrl = uploadResult.Key;
+    const imageUrl2 = uploadResult2.Key;
+    const imageUrl3 = uploadResult3.Key;
+    const imageUrl4 = uploadResult4.Key;
+    const imageUrl5 = uploadResult5.Key;
 
     const productData = {
       name: requestBody.name,
       description: requestBody.description,
       imageUrl: imageUrl,
+      imageUrl2: imageUrl2,
+      imageUrl3: imageUrl3,
+      imageUrl4: imageUrl4,
+      imageUrl5: imageUrl5,
       price: requestBody.price,
       categoryId: requestBody.categoryId,
       sizes: requestBody?.sizes,
