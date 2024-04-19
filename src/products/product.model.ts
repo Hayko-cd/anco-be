@@ -10,20 +10,8 @@ export class Product extends Document {
   @Prop()
   description: string;
 
-  @Prop()
-  imageUrl: string;
-
-  @Prop()
-  imageUrl2: string;
-
-  @Prop()
-  imageUrl3: string;
-
-  @Prop()
-  imageUrl4: string;
-
-  @Prop()
-  imageUrl5: string;
+  @Prop([String])
+  imageUrls: string[];
 
   @Prop()
   price: string;
