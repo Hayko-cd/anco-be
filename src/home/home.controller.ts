@@ -1,9 +1,7 @@
-// home.controller.ts
 import {
   Controller,
   Get,
   Post,
-  Put,
   Body,
   HttpException,
   HttpStatus,
@@ -16,7 +14,7 @@ export class HomeController {
   constructor(private readonly homeService: HomeService) {}
 
   @Get()
-  async getAllData(): Promise<Home> {
+  async getAllData(): Promise<Home[]> {
     return this.homeService.getAllData();
   }
 
@@ -26,19 +24,6 @@ export class HomeController {
       return await this.homeService.addData(data);
     } catch (error) {
       console.error('Error adding data:', error);
-      throw new HttpException(
-        'Internal Server Error',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-    }
-  }
-
-  @Put()
-  async editData(@Body() data: Partial<Home>): Promise<Home | null> {
-    try {
-      return await this.homeService.editData(data);
-    } catch (error) {
-      console.error('Error editing data:', error);
       throw new HttpException(
         'Internal Server Error',
         HttpStatus.INTERNAL_SERVER_ERROR,

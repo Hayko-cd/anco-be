@@ -1,9 +1,10 @@
-// home.model.ts
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { HydratedDocument } from 'mongoose';
+
+export type HomeDocument = HydratedDocument<Home>;
 
 @Schema()
-export class Home extends Document {
+export class Home {
   @Prop()
   title: string;
 
@@ -11,4 +12,4 @@ export class Home extends Document {
   description: string;
 }
 
-export const homeSchema = SchemaFactory.createForClass(Home);
+export const HomeSchema = SchemaFactory.createForClass(Home);

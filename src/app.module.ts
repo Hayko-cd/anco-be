@@ -12,6 +12,7 @@ import { CategoryModule } from './category/category.module';
 import { ProductModule } from './products/product.module';
 import { BlogsModule } from './blog/blog.module';
 import { FileUploadModule } from './file-upload.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { FileUploadModule } from './file-upload.module';
     ProductModule,
     BlogsModule,
     FileUploadModule,
+    PaymentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
