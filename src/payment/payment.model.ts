@@ -24,14 +24,6 @@ export class Payment {
         price: String,
         quantity: Number,
         sizes: [String],
-        country: String,
-        city: String,
-        postal_code: String,
-        country_delivery: String,
-        city_delivery: String,
-        home_delivery: String,
-        comment_field: String,
-        street_delivery: String,
         __v: Number,
       },
     ],
@@ -44,6 +36,30 @@ export class Payment {
 
   @Prop({ required: true })
   price: string;
+
+  @Prop({ required: false })
+  country: string;
+
+  @Prop({ required: false })
+  city: string;
+
+  @Prop({ required: false })
+  postal_code: string;
+
+  @Prop({ required: false })
+  country_delivery: string;
+
+  @Prop({ required: false })
+  city_delivery: string;
+
+  @Prop({ required: false })
+  home_delivery: string;
+
+  @Prop({ required: false })
+  street_delivery: string;
+
+  @Prop({ required: false })
+  comment_field: string;
 
   @Prop({ required: true })
   name: string;
