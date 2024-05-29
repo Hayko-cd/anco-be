@@ -26,6 +26,9 @@ export class Product extends Document {
   outside_material: string;
 
   @Prop()
+  sale_price: string;
+
+  @Prop()
   inside_material: string;
 
   @Prop()
