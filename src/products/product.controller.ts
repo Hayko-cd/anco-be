@@ -39,6 +39,7 @@ export class ProductController {
       description: requestBody.description,
       imageUrls: imageUrls,
       price: requestBody.price,
+      sale_price: requestBody.sale_price,
       categoryId: requestBody.categoryId,
       sizes: requestBody?.sizes,
       country_made_in: requestBody.country_made_in,
