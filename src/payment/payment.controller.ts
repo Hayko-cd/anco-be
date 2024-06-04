@@ -15,6 +15,4 @@ export class PaymentController {
   async findAll() {
     return this.paymentService.findAll();
   }
-
-  // Add other endpoints as needed
 }

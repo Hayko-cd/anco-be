@@ -22,7 +22,6 @@ export class Payment {
         inside_material: String,
         outside_material: String,
         price: String,
-        quantity: Number,
         sizes: [String],
         __v: Number,
       },
