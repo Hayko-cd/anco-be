@@ -52,6 +52,9 @@ export class Payment {
   city_delivery: string;
 
   @Prop({ required: false })
+  selectedColor: string;
+
+  @Prop({ required: false })
   home_delivery: string;
 
   @Prop({ required: false })
