@@ -23,6 +23,7 @@ export class Payment {
         outside_material: String,
         price: String,
         sizes: [String],
+        selectedColor: String,
         __v: Number,
       },
     ],
@@ -50,9 +51,6 @@ export class Payment {
 
   @Prop({ required: false })
   city_delivery: string;
-
-  @Prop({ required: false })
-  selectedColor: string;
 
   @Prop({ required: false })
   home_delivery: string;
