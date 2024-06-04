@@ -46,6 +46,7 @@ export class ProductController {
       inside_material: requestBody.inside_material,
       outside_material: requestBody.outside_material,
       brand: requestBody.brand,
+      colorsHexCode: requestBody.colorsHexCode,
     };
 
     return this.productService.create(productData);

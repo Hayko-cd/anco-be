@@ -34,6 +34,9 @@ export class Product extends Document {
   @Prop()
   brand: string;
 
+  @Prop([String])
+  colorsHexCode: string[];
+
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Category' })
   categoryId: Category['_id'];
 }
